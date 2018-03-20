@@ -186,7 +186,7 @@ label{
 
 .contact-item{
     position: relative;
-    animation: move 2s linear;
+    animation: move .5s linear;
 }
 @keyframes move{
     from{opacity: 0}
