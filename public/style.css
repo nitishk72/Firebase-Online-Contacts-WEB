@@ -1,0 +1,208 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background: #eceff1;
+    color: #444444;
+    font-family: sans-serif;
+}
+#wrapper{
+    min-height: 80vh;
+    display: none;
+}
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+#loading{
+    max-width: 380px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.animation{
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 25px solid #444444;
+    border-top-color: #039be5;
+    animation: 2s linear circle infinite;
+}
+@keyframes circle{
+    from{ transform: rotate(0deg)}
+    to{ transform: rotate(360deg)}
+}
+nav{
+    background:rgb(84, 56, 211);
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.3)
+}
+nav .container{
+    display: flex;
+    justify-content: space-between; 
+}
+.brand{
+    display: inline-block;
+}
+nav ul{
+    display: inline-block;
+}
+nav ul li{
+    position: relative;
+    display: inline-flex;
+    list-style: none;
+}
+nav ul li a, .brand .brand-name{
+    padding: 16px 4px;
+    text-decoration: none;
+    color: #efefef;
+    min-width: 60px;
+    text-align:center;
+    border-bottom: 4px solid rgb(84, 56, 211);
+    transition: 1s;
+    justify-content: flex-end;
+}
+.brand .brand-name{
+    padding: 0;
+    font-size: 1.2em;
+    line-height: 50px;
+}
+nav ul li a:after{
+    transition: all 0.3s linear;
+    content: ' ';
+    width: 0%;
+    height: 4px;
+    background: red;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+nav ul li a:hover:after{
+    width: 100px;
+}
+.card{
+    background:  rgba(0,0,0,0.05);
+    padding: 40px 10px;
+    margin: 0 auto;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
+    border-radius: 4px;
+    margin:10px;;
+}
+.row{
+    display: flex;
+}
+.col-6{
+    width: 50%;
+    margin: 10px auto;
+}
+.form-line{
+    display: flex;
+    padding: 5px 0px;
+    justify-content: center;
+}
+
+label{
+    width: 30%;
+}
+.form-input{
+    padding: 8px;
+    border: 0;
+    outline: 0;
+    line-height: 20px;
+    font-weight: 400;
+    font-size: 16px;
+    box-shadow: 0 -2px 0 #5438d3 inset, 0 0 0 1px #e0e0e0 inset;
+}
+.btn{
+    height: 36px;
+    width: 20%;
+    color: rgb(255,255,255);
+    background-color: rgb(110, 56, 211);
+    border:0;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+    transition: .5s;
+}
+.btn:hover{
+    background: rgb(84, 56, 211);
+}
+#alert{
+    display: none;
+    line-height: 30px;
+    border: 4px;
+}
+.alert{
+    background: #5438d3;
+    width: 60%;
+    margin: 0 auto;
+    border-radius: 4px;
+    color: #e0e0e0;
+}
+
+#list li, #result li{
+    padding: 8px 10px;
+    background: #efefef;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+    list-style: none;
+    margin: 4px 0px;
+    zoom: 1.2;
+    transition: 1s;
+    cursor: pointer;
+    position: relative;
+}
+#list li:before, #result li:before{
+    content: "";
+    position: absolute;
+    z-index:-1;
+    border-radius: 4px;
+    top: 0;  left: 0;  right: 0;  bottom: 0;
+    background: #fff;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform .8s ease-out;
+  }
+  #list li:hover:before, #result li:hover:before{transform: scaleX(1);}
+
+#list li:hover, #result li:hover{
+    background: #3333;
+}
+@media (max-width:900px) {
+    .row{
+        display: initial;
+    }
+    .col-6{
+        width:100%;
+    }
+}
+
+
+
+.contact-item{
+    position: relative;
+    animation: move 2s linear;
+}
+@keyframes move{
+    from{opacity: 0}
+    to{opacity: 1;}
+}
+.footer{
+    width: 100%;
+    background: #444;
+    color: #efefef;
+    text-align: center;
+}
+.footer li{
+    list-style: none;
+}
+.footer li a{
+    color: #efefef;
+    text-decoration: none;
+    line-height: 2;
+}

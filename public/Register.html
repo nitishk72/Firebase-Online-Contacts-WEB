@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Regsiter || Contact</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/4.11.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/4.11.0/firebase-auth.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="loading">
+      <div id="error"></div>
+      <div id="animation" class="animation"></div>
+    </div>
+    <div id="wrapper">
+      <nav>
+        <div class="container">
+          <div class="brand">
+            <div class="brand-name">Firebase Contact</div>
+          </div>
+          <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="Login.html">Login</a>
+            </li>
+            <li>
+                <a href="Register.html">Register</a>
+            </li>
+            <li>
+                <a href="Dashboard.html">Dashboard</a>
+            </li>
+            </ul>
+        </div>
+      </nav>
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <div class="card">
+              <center><h2>Register Form</h2></center><br><br>  
+                <form id="register">
+                  <div class="form-line">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" class="form-input">
+                  </div>
+                  <div class="form-line">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Create Password" class="form-input">
+                  </div>
+                  <div class="form-line">
+                    <label for="btn"></label>
+                    <input type="submit" class="btn" value="Login">
+                  </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        var auth ;
+      document.addEventListener('DOMContentLoaded', function() {
+        try {
+          let app = firebase.app();
+          auth =  firebase.auth();
+          let features = ['auth'].filter(feature => typeof app[feature] === 'function');
+          document.getElementById('wrapper').style.display = "block";
+          document.getElementById('loading').style.display = "none";
+        } catch (e) {
+          console.error(e);
+          document.getElementById('error').innerHTML = 'Error loading the Firebase SDK, check the console.';
+          document.getElementById('animation').remove();
+        }
+      });
+      document.getElementById('register').addEventListener('submit',Register);
+      function Register(e){
+        e.preventDefault();;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        auth.createUserWithEmailAndPassword(email, password).then((data)=>{
+            console.log(data);
+        }).catch((error) => {
+
+            var errorCode = error.code;
+            var errorMessage = error.message;
+
+            console.log(errorCode);
+            console.log(errorMessage);
+            
+        });
+      }
+    </script>
+  </body>
+</html>

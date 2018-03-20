@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/4.11.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/4.11.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/4.11.0/firebase-auth.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="loading">
+      <div id="error"></div>
+      <div id="animation" class="animation"></div>
+    </div>
+    <div id="wrapper">
+      <nav>
+        <div class="container">
+          <div class="brand">
+            <div class="brand-name">Firebase Contact</div>
+          </div>
+          <ul>
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                  <a href="Login.html">Login</a>
+              </li>
+              <li>
+                  <a href="Register.html">Register</a>
+              </li>
+              <li>
+                  <a href="Dashboard.html">Dashboard</a>
+              </li>
+            </ul>
+        </div>
+      </nav>
+      <div class="container">
+        <div class="card">
+          <h1><center>Online Contacts</center></h1>
+        </div>
+        <div class="row">
+
+        <div class="col-6">
+            <div class="card">
+              <h2><center> Title </center></h2>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor, repellat tempore officiis eos accusantium, similique iure sit nobis quos quae deserunt eveniet? Consectetur id, omnis dolore distinctio laudantium perspiciatis error.
+              </p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card">
+                <h2><center> Title </center></h2>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor, repellat tempore officiis eos accusantium, similique iure sit nobis quos quae deserunt eveniet? Consectetur id, omnis dolore distinctio laudantium perspiciatis error.
+                </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="row">
+        <div class="col-6">
+          <div class="row">
+              <div class="col-6">
+                <ul>
+                    <li>
+                      <a href="javascript:void(0)">Some Link</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)">Some Link</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)">Some Link</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)">Some Link</a>
+                    </li>
+                </ul>
+              </div>
+              <div class="col-6">
+                  <ul>
+                      <li>
+                        <a href="javascript:void(0)">Some Link</a>
+                      </li>
+                      <li>
+                        <a href="javascript:void(0)">Some Link</a>
+                      </li>
+                      <li>
+                        <a href="javascript:void(0)">Some Link</a>
+                      </li>
+                      <li>
+                        <a href="javascript:void(0)">Some Link</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="row">
+              <div class="col-6">
+                  <ul>
+                      <li>
+                        <a href="javascript:void(0)">Some Link</a>
+                      </li>
+                      <li>
+                        <a href="javascript:void(0)">Some Link</a>
+                      </li>
+                      <li>
+                        <a href="javascript:void(0)">Some Link</a>
+                      </li>
+                      <li>
+                        <a href="javascript:void(0)">Some Link</a>
+                      </li>
+                  </ul>
+              </div>
+              <div class="col-6">
+                  <ul>
+                      <li>
+                        <a href="javascript:void(0)">Some Link</a>
+                      </li>
+                      <li>
+                        <a href="javascript:void(0)">Some Link</a>
+                      </li>
+                      <li>
+                        <a href="javascript:void(0)">Some Link</a>
+                      </li>
+                      <li>
+                        <a href="javascript:void(0)">Some Link</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        try {
+          let app = firebase.app();
+          let features = ['database','auth'].filter(feature => typeof app[feature] === 'function');
+          document.getElementById('wrapper').style.display = "block";
+          document.getElementById('loading').style.display = "none";
+        } catch (e) {
+          console.error(e);
+          document.getElementById('error').innerHTML = 'Error loading the Firebase SDK, check the console.';
+          document.getElementById('animation').style.display = 'none';
+        }
+      });
+    </script>
+  </body>
+</html>

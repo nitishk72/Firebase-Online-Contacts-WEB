@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard || Contact</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/4.11.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/4.11.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/4.11.0/firebase-auth.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="loading">
+      <div id="error"></div>
+      <div id="animation" class="animation"></div>
+    </div>
+    <div id="wrapper">
+      <nav>
+        <div class="container">
+          <div class="brand">
+            <div class="brand-name">Firebase Contact</div>
+          </div>
+          <ul>
+              <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="Login.html">Login</a>
+                </li>
+                <li>
+                    <a href="Register.html">Register</a>
+                </li>
+                <li>
+                    <a href="Dashboard.html">Dashboard</a>
+                </li>
+            </ul>
+          </div>
+      </nav>
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+              <div class="card">
+                <center><h2>Save Your Contacts</h2></center>
+                <br>
+                <form id="contactform">
+                    <div class="form-line" id="alert">
+                      <center class="alert">Saved Successfully</center>
+                    </div>
+                    <div class="form-line">
+                      <label for="name">Name</label>
+                        <input type="text" name="name" class="form-input" id="name" placeholder="Name" autocomplete="off" required>
+                    </div>
+                    <div class="form-line">
+                        <label for="name">Mobile Number</label>
+                        <input type="text" name="number"  class="form-input" id="mobile" placeholder="Enter Number"  autocomplete="off" required>
+                    </div>
+                    <div class="form-line">
+                        <label for="name"></label>
+                        <input type="submit" name="submit"  class="btn btn-primary" id="submit" value="Save">
+                    </div>
+                </form>
+              </div>
+              <div class="card">
+                <center><h2>Search</h2></center>
+                <br><br>
+                <form id="search">
+                  <div class="form-line">  
+                    <label for="name_s">Enter Name to Search</label>
+                    <input type="text" id="name_s" placeholder="Enter Name to Search" class="form-input">
+                  </div>
+                  <div class="form-line">
+                    <label for="name"></label>
+                    <input type="submit" class="btn" value="Search">
+                  </div>
+                  <ul id="result">
+                    
+                  </ul>
+                </form>
+              </div>
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <center><h2>Contacts</h2></center>
+              <div class="animation" style="zoom:0.2;" id="contact-loading"></div>
+              <ul id="list"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var ref, auth, user ;
+      document.addEventListener('DOMContentLoaded', function() {
+        try {
+          let app = firebase.app();
+          auth = firebase.auth();
+          let features = ['database','auth'].filter(feature => typeof app[feature] === 'function');
+          document.getElementById('wrapper').style.display = "initial";
+          document.getElementById('loading').style.display = "none";
+          ref =  firebase.database().ref('contact');
+          user = firebase.auth().currentUser;
+          if(user)
+          window.location.href = "./Login.html";
+            // window.location.href = "./Login.html";
+          fetchContacts();
+        } catch (e) {
+          console.error(e);
+          document.getElementById('error').innerHTML = 'Error loading the Firebase SDK, check the console.';
+          document.getElementById('animation').style.display = 'none';
+        }
+      });
+      document.getElementById('contactform').addEventListener('submit',doSubmit);
+      document.getElementById('search').addEventListener('submit',doSearch);
+      function doSubmit(e){
+        e.preventDefault();
+        var u_name = document.getElementById('name').value;
+        var u_mobile = document.getElementById('mobile').value;
+        ref.push().set({
+            name: u_name,
+            mobile: u_mobile
+          });
+          document.getElementById('contactform').reset();
+          document.getElementById('alert').style.display = "block";
+          setTimeout(function(){
+            document.getElementById('alert').style.display = "none";
+          },4000);
+      }
+      function fetchContacts(){
+        var list = document.getElementById('list');
+        ref.on('value', function(snapshot) {
+          list.innerHTML = "";
+          document.getElementById('contact-loading').style.display = "none"
+          snapshot.forEach(function(childSnapshot) {
+              var ele = document.createElement('li');
+              ele.innerHTML = childSnapshot.val().name;
+              ele.classList.add("contact-item");
+              list.appendChild(ele);
+          });
+         });
+      }
+      var result = document.getElementById('result');
+      function doSearch(e) {
+        e.preventDefault();
+        var c_name = document.getElementById('name_s').value;
+        ref.orderByChild('name').equalTo(c_name).on('value',(data) => {
+            data.forEach((s)=>{
+              var ele = document.createElement('li');
+              ele.innerHTML = s.val().name+" || "+s.val().mobile;
+              ele.classList.add("contact-item");
+              result.appendChild(ele);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
