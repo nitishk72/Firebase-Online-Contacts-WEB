@@ -146,6 +146,7 @@
       var result = document.getElementById('result');
       function doSearch(e) {
         e.preventDefault();
+		result.innerHTML = "";
         var c_name = document.getElementById('name_s').value;
         ref.orderByChild('name').equalTo(c_name).on('value',(data) => {
             data.forEach((s)=>{
